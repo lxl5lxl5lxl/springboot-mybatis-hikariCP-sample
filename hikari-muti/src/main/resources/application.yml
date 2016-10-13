@@ -1,0 +1,23 @@
+lxl:
+  vv: lcy
+datasource:
+  ds1:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: pool-lxl1
+      maximum-pool-size: 50
+      minimum-idle: 10
+  ds2:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/test2?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      pool-name: pool-lxl2
+      maximum-pool-size: 40
+      minimum-idle: 10
