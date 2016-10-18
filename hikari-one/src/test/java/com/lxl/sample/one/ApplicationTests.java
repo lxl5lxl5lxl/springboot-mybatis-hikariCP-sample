@@ -1,8 +1,12 @@
 package com.lxl.sample.one;
 
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.lxl.sample.one.dao.UserDao;
 import com.lxl.sample.one.entity.User;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lxl on 16/10/8.
@@ -22,19 +28,22 @@ import javax.sql.DataSource;
 public class ApplicationTests {
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private DataSource ds;
 
     @Test
     @Rollback
     @Transactional
     public void findByName() throws Exception {
-        userDao.insert("露馅了", 20);
-//        User u = userDao.findByName("露馅了");
-//        Assert.assertEquals(20, u.getAge().intValue());
-        User user=userDao.findByName("露馅了");
-        Assert.assertNotNull(user);
-        System.err.println(user);
+        for (int i = 0; i <33 ; i++) {
+            userDao.insert("露馅了", i);
+        }
+        PageHelper.startPage(1, 10);
+//        PageHelper.orderBy("age desc");
+        List<User> list=userDao.findAgeByName("露馅了");
+        Assert.assertEquals(10,list.size());
+        for (User user : list) {
+            System.out.println(user);
+        }
+        System.out.println(((Page)list).getTotal());
     }
 
 }

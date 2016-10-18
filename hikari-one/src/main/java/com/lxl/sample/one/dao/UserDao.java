@@ -17,8 +17,8 @@ public interface UserDao {
     @Select("SELECT * FROM `User` WHERE NAME = #{name}")
     User findByName(@Param("name") String name);
 
-    @Select("select `name`,age from `User` WHERE `name` = #{name}")
-    List<Map> findAgeByName(@Param("name") String name);
+    @Select("select * from `User` WHERE `name` = #{name} ORDER BY age desc")
+    List<User> findAgeByName(@Param("name") String name);
 
     @Insert("INSERT INTO `User`(`name`,age) VALUES(#{name}, #{age})")
     int insert(@Param("name") String name, @Param("age") Integer age);
