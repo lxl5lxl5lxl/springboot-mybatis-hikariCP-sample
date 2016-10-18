@@ -21,6 +21,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!--此属性为TRUE,打包时不执行测试代码-->
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
